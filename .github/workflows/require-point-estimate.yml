@@ -1,4 +1,4 @@
-name: Convert PRs to Drafts without Linked Issue
+name: Require project card has point label
 
 on:
   project_card:
