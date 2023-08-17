@@ -20,13 +20,24 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  checkPointLabel:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      - name: Check issue status and label
+        id: check_issue
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issuePayload = context.payload.issue;
+            const issueLabels = issuePayload.labels;
+            const issueBody = issuePayload.body.toLowerCase();
+            const isInProgress = issueBody.includes('In Progress');
+            const labelRegex = /^\d+$/; // Matches only numbers
+            
+            if (issueStatus === 'open' && isInProgress && !issueLabels.find(label => labelRegex.test(label.name))) {
+              const octokit = context.github;
+              const addLabelPayload = context.issue({ labels: ['point'] });
+              await octokit.issues.addLabels(addLabelPayload);
+              core.setFailed('The "point" label is required for issues in progress.');
+            }
