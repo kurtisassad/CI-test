@@ -2,7 +2,8 @@ name: Require project card has point label
 
 on:
   project_card:
-    types: [moved]
+    types:
+      - moved
 
 jobs:
   checkPointLabel:
