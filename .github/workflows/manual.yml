@@ -23,21 +23,17 @@ jobs:
   checkPointLabel:
     runs-on: ubuntu-latest
     steps:
-      - name: Check issue status and label
-        id: check_issue
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const issuePayload = context.payload.issue;
-            const issueLabels = issuePayload.labels;
-            const issueBody = issuePayload.body.toLowerCase();
-            const isInProgress = issueBody.includes('In Progress');
-            const labelRegex = /^\d+$/; // Matches only numbers
-            
-            if (issueStatus === 'open' && isInProgress && !issueLabels.find(label => labelRegex.test(label.name))) {
-              const octokit = context.github;
-              const addLabelPayload = context.issue({ labels: ['point'] });
-              await octokit.issues.addLabels(addLabelPayload);
-              core.setFailed('The "point" label is required for issues in progress.');
-            }
+    - name: Checkout
+    - uses: actions/checkout@v3
+
+    - name: Move File
+      run: |
+        mv ./test/new/temp.txt ./test/mature/
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: move-file
+        title: "[Automated] mature test"
+        body: "Automated pull request to move a file from ./test/new to ./test/mature."
