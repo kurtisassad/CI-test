@@ -18,8 +18,7 @@ jobs:
 
       - name: Move File
         run: |
-          mkdir -p ./test/mature
-          mv ./test/new/temp.txt ./test/mature/
+          mv ./test/regular/temp.txt ./test/mature/
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5

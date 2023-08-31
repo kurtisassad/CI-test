@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1dbab988-fb87-4814-8254-f74b8a3fe7a9" name="Changes" comment="temp">
       <change beforePath="$PROJECT_DIR$/.github/workflows/manual.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/manual.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693495613076</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="temp">
+      <created>1693495750355</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693495750355</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
